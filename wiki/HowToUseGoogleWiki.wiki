@@ -1,0 +1,8 @@
+#summary A referenced guide of how to use this wiki
+#labels wiki
+
+= Reference =
+ * Google code官方Support给出的英文使用说明
+ http://code.google.com/p/support/wiki/WikiSyntax#Side_navigation
+ * chinese-room提供的中文文档
+ http://code.google.com/p/chinese-room/wiki/WikiSyntax
