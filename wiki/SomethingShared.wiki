@@ -21,3 +21,7 @@
  * http://www.360doc.com/content/08/0917/23/59141_1653485.shtml
  * http://www.360doc.com/content/08/0917/16/59141_1652299.shtml
  * http://www.360doc.com/content/07/0117/11/16538_334231.shtml
+
+=Some reference pages about C++=
+ * dozb的C++ blog，里面有关于Boost、ACE等C++开源库的说明，可以看一下，我当时用Boost的串行化时曾参考过这里：
+ http://dozb.bokee.com/
