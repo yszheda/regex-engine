@@ -1,4 +1,4 @@
-#summary Some reference pages of _Boost::Regex_ from Wiz
+#summary Some reference pages of _Boost::Regex_
 #labels BoostRegex,reference
 
 =Some reference pages of Boost::Regex from Wiz=
