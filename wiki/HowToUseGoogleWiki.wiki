@@ -6,3 +6,5 @@
  http://code.google.com/p/support/wiki/WikiSyntax#Side_navigation
  * chinese-room提供的中文文档
  http://code.google.com/p/chinese-room/wiki/WikiSyntax
+
+可以在它们项目主页Project Home中加上星标Star Project（这玩意儿挺好的，我在Google Reader中经常用~），这样在My Favourites中就可以找到它们，方便查阅。一般的wiki我们用的比较多可能就是分享一些参考链接，这样直接粘上来即可，还是挺方便的。
