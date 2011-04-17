@@ -6,3 +6,18 @@
  * http://j.mp/hfh6uL
  * http://j.mp/exXLiD
  * http://j.mp/g0nVAU
+
+=Some reference pages of regex=
+个人比较推荐：
+ * 《正则表达式30分钟入门》，可以算是我学习正则表达式的入门资料。
+ http://deerchao.net/tutorials/regex/regex.htm
+ * 鸟哥Linux私房菜，我学习Linux的入门资料，里面有关于grep、awk、sed使用regex的基础教程：
+ http://linux.vbird.org/
+此外还有以下这些资料：
+ * http://www.blueidea.com/tech/program/2006/3443.asp
+ * http://www.yesky.com/185/1932685.shtml
+ * http://www.360doc.com/content/08/0802/21/59141_1503027.shtml
+ * http://www.360doc.com/content/08/0731/22/59141_1494549.shtml
+ * http://www.360doc.com/content/08/0917/23/59141_1653485.shtml
+ * http://www.360doc.com/content/08/0917/16/59141_1652299.shtml
+ * http://www.360doc.com/content/07/0117/11/16538_334231.shtml
