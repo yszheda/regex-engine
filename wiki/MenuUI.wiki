@@ -1,0 +1,27 @@
+#summary One-sentence summary of this page.
+#labels menu,UI
+
+= Introduction =
+
+menu item 'options'
+
+
+= Details =
+
+== *选项* ==
+ * 大小写敏感
+----------
+ * 单行模式
+ * 多行模式
+-----------
+ * POSIX
+ * ECMAScript
+ * JavaScript
+ * grep
+ * egrep
+ * awk
+ * sed
+ * perl
+-----------
+其实大小写敏感、单行模式、多行模式也可以做成菜单外 _radio button_
+那样的选项，这样菜单项就不用分组了。
