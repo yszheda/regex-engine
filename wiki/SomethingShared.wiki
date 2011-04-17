@@ -1,4 +1,4 @@
-#summary Some reference pages of Boost::Regex from Wiz
+#summary Some reference pages of _Boost::Regex_ from Wiz
 #labels BoostRegex,reference
 
 =Some reference pages of Boost::Regex from Wiz=
@@ -6,5 +6,3 @@
  * http://j.mp/hfh6uL
  * http://j.mp/exXLiD
  * http://j.mp/g0nVAU
-
-
