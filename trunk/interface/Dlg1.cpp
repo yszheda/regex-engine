@@ -40,6 +40,14 @@ BEGIN_MESSAGE_MAP(CDlg1, CDialog)
 	ON_BN_CLICKED(IDC_SEARCH, &CDlg1::OnBnClickedSearch)
 	//ON_BN_CLICKED(IDC_LOAD, &CDlg1::OnBnClickedLoad)
 	ON_BN_CLICKED(IDC_LOAD, &CDlg1::OnBnClickedLoad)
+	ON_COMMAND(ID_POSIX, &CDlg1::OnPosix)
+	ON_COMMAND(ID_ECMAS, &CDlg1::OnEcmas)
+	ON_COMMAND(ID_JAVAS, &CDlg1::OnJavas)
+	ON_COMMAND(ID_GREP, &CDlg1::OnGrep)
+	ON_COMMAND(ID_EGREP, &CDlg1::OnEgrep)
+	ON_COMMAND(ID_AWK, &CDlg1::OnAwk)
+	ON_COMMAND(ID_SED, &CDlg1::OnSed)
+	ON_COMMAND(ID_PERL, &CDlg1::OnPerl)
 END_MESSAGE_MAP()
 
 
@@ -169,4 +177,44 @@ void CDlg1::OnBnClickedLoad()
 
 	m_strTestString=result;
 	UpdateData(false);
+}
+
+void CDlg1::OnPosix()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+void CDlg1::OnEcmas()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+void CDlg1::OnJavas()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+void CDlg1::OnGrep()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+void CDlg1::OnEgrep()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+void CDlg1::OnAwk()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+void CDlg1::OnSed()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+void CDlg1::OnPerl()
+{
+	// TODO: 在此添加命令处理程序代码
 }
