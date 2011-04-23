@@ -39,6 +39,14 @@ void CDlg2::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CDlg2, CDialog)
 	ON_BN_CLICKED(IDC_REPLACE, &CDlg2::OnBnClickedReplace)
+	ON_COMMAND(ID_POSIX, &CDlg2::OnPosix)
+	ON_COMMAND(ID_ECMAS, &CDlg2::OnEcmas)
+	ON_COMMAND(ID_JAVAS, &CDlg2::OnJavas)
+	ON_COMMAND(ID_GREP, &CDlg2::OnGrep)
+	ON_COMMAND(ID_EGREP, &CDlg2::OnEgrep)
+	ON_COMMAND(ID_AWK, &CDlg2::OnAwk)
+	ON_COMMAND(ID_SED, &CDlg2::OnSed)
+	ON_COMMAND(ID_PERL, &CDlg2::OnPerl)
 END_MESSAGE_MAP()
 
 
@@ -56,4 +64,44 @@ void CDlg2::OnBnClickedReplace()
 	CString m_strResult(result.c_str());
 	MessageBox(m_strResult);
 	UpdateData(FALSE);
+}
+
+void CDlg2::OnPosix()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+void CDlg2::OnEcmas()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+void CDlg2::OnJavas()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+void CDlg2::OnGrep()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+void CDlg2::OnEgrep()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+void CDlg2::OnAwk()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+void CDlg2::OnSed()
+{
+	// TODO: 在此添加命令处理程序代码
+}
+
+void CDlg2::OnPerl()
+{
+	// TODO: 在此添加命令处理程序代码
 }

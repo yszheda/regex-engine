@@ -97,8 +97,11 @@ FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "确定",IDOK,209,179,50,14,NOT WS_VISIBLE
     PUSHBUTTON      "退出",IDCANCEL,263,179,50,14
-    CONTROL         "",IDC_TAB1,"SysTabControl32",0x0,101,7,205,165
-    LISTBOX         IDC_LIST1,8,20,84,152,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_TAB1,"SysTabControl32",0x0,101,14,205,165
+    LISTBOX         IDC_LIST1,8,26,84,152,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "大小写敏感",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,92,2,50,10
+    CONTROL         "单行模式",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,143,2,43,10
+    CONTROL         "多行模式",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,185,2,43,10
 END
 
 IDD_DIALOG1 DIALOGEX 0, 0, 194, 146
@@ -228,11 +231,16 @@ BEGIN
     BEGIN
         MENUITEM "关于",                          ID_32773
     END
-    POPUP "方式"
+    POPUP "方法"
     BEGIN
-        MENUITEM "方式1",                         ID_32776
-        MENUITEM "方式2",                         ID_32777
-        MENUITEM "方式3",                         ID_32778
+        MENUITEM "POSIX",                       ID_POSIX
+        MENUITEM "ECMAScript",                  ID_ECMAS
+        MENUITEM "JavaScript",                  ID_JAVAS
+        MENUITEM "grep",                        ID_GREP
+        MENUITEM "egrep",                       ID_EGREP
+        MENUITEM "awk",                         ID_AWK
+        MENUITEM "sed",                         ID_SED
+        MENUITEM "perl",                        ID_PERL
     END
 END
 

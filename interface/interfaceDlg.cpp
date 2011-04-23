@@ -28,6 +28,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	
+	afx_msg void OnUpdateAwk(CCmdUI *pCmdUI);
 };
 
 CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
@@ -41,6 +42,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 	
+	//ON_UPDATE_COMMAND_UI(ID_AWK, &CAboutDlg::OnUpdateAwk)
 END_MESSAGE_MAP()
 
 
@@ -73,12 +75,20 @@ BEGIN_MESSAGE_MAP(CinterfaceDlg, CDialog)
 	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB1, &CinterfaceDlg::OnTcnSelchangeTab1)
 	ON_COMMAND(ID_32773, &CinterfaceDlg::OnAbout)
 	ON_WM_INITMENUPOPUP()
-	ON_UPDATE_COMMAND_UI(ID_32776, &CinterfaceDlg::OnUpdate32776)
-	ON_COMMAND(ID_32776, &CinterfaceDlg::On32776)
-	ON_COMMAND(ID_32777, &CinterfaceDlg::On32777)
-	ON_UPDATE_COMMAND_UI(ID_32777, &CinterfaceDlg::OnUpdate32777)
-	ON_COMMAND(ID_32778, &CinterfaceDlg::On32778)
-	ON_UPDATE_COMMAND_UI(ID_32778, &CinterfaceDlg::OnUpdate32778)
+	//ON_UPDATE_COMMAND_UI(ID_32776, &CinterfaceDlg::OnUpdate32776)
+	//ON_COMMAND(ID_32776, &CinterfaceDlg::On32776)
+	//ON_COMMAND(ID_32777, &CinterfaceDlg::On32777)
+	//ON_UPDATE_COMMAND_UI(ID_32777, &CinterfaceDlg::OnUpdate32777)
+	//ON_COMMAND(ID_32778, &CinterfaceDlg::On32778)
+	//ON_UPDATE_COMMAND_UI(ID_32778, &CinterfaceDlg::OnUpdate32778)
+	ON_UPDATE_COMMAND_UI(ID_POSIX, &CinterfaceDlg::OnUpdatePosix)
+	ON_UPDATE_COMMAND_UI(ID_ECMAS, &CinterfaceDlg::OnUpdateEcmas)
+	ON_UPDATE_COMMAND_UI(ID_JAVAS, &CinterfaceDlg::OnUpdateJavas)
+	ON_UPDATE_COMMAND_UI(ID_GREP, &CinterfaceDlg::OnUpdateGrep)
+	ON_UPDATE_COMMAND_UI(ID_EGREP, &CinterfaceDlg::OnUpdateEgrep)
+	ON_UPDATE_COMMAND_UI(ID_SED, &CinterfaceDlg::OnUpdateSed)
+	ON_UPDATE_COMMAND_UI(ID_PERL, &CinterfaceDlg::OnUpdatePerl)
+	ON_UPDATE_COMMAND_UI(ID_AWK, &CinterfaceDlg::OnUpdateAwk)
 END_MESSAGE_MAP()
 
 
@@ -145,8 +155,16 @@ BOOL CinterfaceDlg::OnInitDialog()
 	
 
 
-	state1=true;
-	state2=state3=false;
+	//state1=true;
+	//state2=state3=false;
+	state_posix=true;
+	state_ecmas=false;
+	state_javas=false;
+	state_grep=false;
+	state_egrep=false;
+	state_awk=false;
+	state_sed=false;
+	state_perl=false;
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -341,7 +359,7 @@ void CinterfaceDlg::OnInitMenuPopup(CMenu *pPopupMenu, UINT nIdex, BOOL bSysMenu
         state.m_nIndexMax = nCount;
     }
 }
-void CinterfaceDlg::OnUpdate32776(CCmdUI *pCmdUI)
+/*void CinterfaceDlg::OnUpdate32776(CCmdUI *pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
 	pCmdUI->SetCheck(state1);
@@ -381,4 +399,55 @@ void CinterfaceDlg::OnUpdate32778(CCmdUI *pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
 	pCmdUI->SetCheck(state3);
+}*/
+
+void CinterfaceDlg::OnUpdatePosix(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(state_posix);
 }
+
+void CinterfaceDlg::OnUpdateEcmas(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(state_ecmas);
+}
+
+void CinterfaceDlg::OnUpdateJavas(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(state_javas);
+}
+
+void CinterfaceDlg::OnUpdateGrep(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(state_grep);
+}
+
+void CinterfaceDlg::OnUpdateEgrep(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(state_egrep);
+}
+
+
+void CinterfaceDlg::OnUpdateAwk(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(state_awk);
+}
+
+void CinterfaceDlg::OnUpdateSed(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(state_sed);
+}
+
+void CinterfaceDlg::OnUpdatePerl(CCmdUI *pCmdUI)
+{
+	// TODO: 在此添加命令更新用户界面处理程序代码
+	pCmdUI->SetCheck(state_perl);
+}
+
+
