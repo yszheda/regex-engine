@@ -24,8 +24,11 @@
 #define IDC_MATCH                       1012
 #define IDC_SEARCH                      1013
 #define IDC_RADIO1                      1013
+#define IDC_ICASE                       1013
 #define IDC_RADIO2                      1014
+#define IDC_SingleLine                  1014
 #define IDC_RADIO3                      1015
+#define IDC_MULTILINE                   1015
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -50,13 +53,14 @@
 #define ID_AWK                          32792
 #define ID_SED                          32793
 #define ID_PERL                         32794
+#define ID_JS                           32795
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        131
-#define _APS_NEXT_COMMAND_VALUE         32795
+#define _APS_NEXT_COMMAND_VALUE         32796
 #define _APS_NEXT_CONTROL_VALUE         1016
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

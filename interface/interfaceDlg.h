@@ -40,18 +40,30 @@ public:
 	CDlg1 m_dlg1;
 	CDlg2 m_dlg2;
 
-	bool state1;
-	bool state2;
-	bool state3;
+	//bool state1;
+	//bool state2;
+	//bool state3;
 
 	CListBox m_list;
 	afx_msg void OnLbnDblclkList1();
 	afx_msg void OnTcnSelchangeTab1(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnAbout();
-	afx_msg void OnUpdate32776(CCmdUI *pCmdUI);
-	afx_msg void On32776();
-	afx_msg void On32777();
-	afx_msg void OnUpdate32777(CCmdUI *pCmdUI);
-	afx_msg void On32778();
-	afx_msg void OnUpdate32778(CCmdUI *pCmdUI);
+
+	afx_msg void OnUpdatePosix(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateEcmas(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateJS(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateGrep(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateEgrep(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateSed(CCmdUI *pCmdUI);
+	afx_msg void OnUpdatePerl(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateAwk(CCmdUI *pCmdUI);
+	afx_msg void OnPosix();
+	afx_msg void OnEcmas();
+	afx_msg void OnJS();
+	afx_msg void OnGrep();
+	afx_msg void OnEgrep();
+	afx_msg void OnAwk();
+	afx_msg void OnSed();
+	afx_msg void OnPerl();
+
 };

@@ -148,7 +148,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="&quot;C:\Documents and Settings\Music Yin\×ÀÃæ\srtp\interface-2.1\interface\SkinPPWTL.lib&quot;"
+				AdditionalDependencies="SkinPPWTL.lib"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"

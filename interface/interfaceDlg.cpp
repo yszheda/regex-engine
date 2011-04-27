@@ -75,20 +75,22 @@ BEGIN_MESSAGE_MAP(CinterfaceDlg, CDialog)
 	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB1, &CinterfaceDlg::OnTcnSelchangeTab1)
 	ON_COMMAND(ID_32773, &CinterfaceDlg::OnAbout)
 	ON_WM_INITMENUPOPUP()
-	//ON_UPDATE_COMMAND_UI(ID_32776, &CinterfaceDlg::OnUpdate32776)
-	//ON_COMMAND(ID_32776, &CinterfaceDlg::On32776)
-	//ON_COMMAND(ID_32777, &CinterfaceDlg::On32777)
-	//ON_UPDATE_COMMAND_UI(ID_32777, &CinterfaceDlg::OnUpdate32777)
-	//ON_COMMAND(ID_32778, &CinterfaceDlg::On32778)
-	//ON_UPDATE_COMMAND_UI(ID_32778, &CinterfaceDlg::OnUpdate32778)
 	ON_UPDATE_COMMAND_UI(ID_POSIX, &CinterfaceDlg::OnUpdatePosix)
 	ON_UPDATE_COMMAND_UI(ID_ECMAS, &CinterfaceDlg::OnUpdateEcmas)
-	ON_UPDATE_COMMAND_UI(ID_JAVAS, &CinterfaceDlg::OnUpdateJavas)
+	ON_UPDATE_COMMAND_UI(ID_JAVAS, &CinterfaceDlg::OnUpdateJS)
 	ON_UPDATE_COMMAND_UI(ID_GREP, &CinterfaceDlg::OnUpdateGrep)
 	ON_UPDATE_COMMAND_UI(ID_EGREP, &CinterfaceDlg::OnUpdateEgrep)
 	ON_UPDATE_COMMAND_UI(ID_SED, &CinterfaceDlg::OnUpdateSed)
 	ON_UPDATE_COMMAND_UI(ID_PERL, &CinterfaceDlg::OnUpdatePerl)
 	ON_UPDATE_COMMAND_UI(ID_AWK, &CinterfaceDlg::OnUpdateAwk)
+	ON_COMMAND(ID_POSIX, &CinterfaceDlg::OnPosix)
+	ON_COMMAND(ID_ECMAS, &CinterfaceDlg::OnEcmas)
+	ON_COMMAND(ID_JAVAS, &CinterfaceDlg::OnJS)
+	ON_COMMAND(ID_GREP, &CinterfaceDlg::OnGrep)
+	ON_COMMAND(ID_EGREP, &CinterfaceDlg::OnEgrep)
+	ON_COMMAND(ID_AWK, &CinterfaceDlg::OnAwk)
+	ON_COMMAND(ID_SED, &CinterfaceDlg::OnSed)
+	ON_COMMAND(ID_PERL, &CinterfaceDlg::OnPerl)
 END_MESSAGE_MAP()
 
 
@@ -153,18 +155,23 @@ BOOL CinterfaceDlg::OnInitDialog()
 	m_dlg2.ShowWindow(false);
 
 	
+	m_dlg1.state_posix=false;
+	m_dlg1.state_ecmas=false;
+	m_dlg1.state_js=false;
+	m_dlg1.state_grep=false;
+	m_dlg1.state_egrep=false;
+	m_dlg1.state_awk=false;
+	m_dlg1.state_sed=false;
+	m_dlg1.state_perl=true;
 
-
-	//state1=true;
-	//state2=state3=false;
-	state_posix=true;
-	state_ecmas=false;
-	state_javas=false;
-	state_grep=false;
-	state_egrep=false;
-	state_awk=false;
-	state_sed=false;
-	state_perl=false;
+	m_dlg2.state_posix=false;
+	m_dlg2.state_ecmas=false;
+	m_dlg2.state_js=false;
+	m_dlg2.state_grep=false;
+	m_dlg2.state_egrep=false;
+	m_dlg2.state_awk=false;
+	m_dlg2.state_sed=false;
+	m_dlg2.state_perl=true;
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -359,95 +366,149 @@ void CinterfaceDlg::OnInitMenuPopup(CMenu *pPopupMenu, UINT nIdex, BOOL bSysMenu
         state.m_nIndexMax = nCount;
     }
 }
-/*void CinterfaceDlg::OnUpdate32776(CCmdUI *pCmdUI)
-{
-	// TODO: 在此添加命令更新用户界面处理程序代码
-	pCmdUI->SetCheck(state1);
-}
-
-void CinterfaceDlg::On32776()
-{
-	// TODO: 在此添加命令处理程序代码
-	state1=!state1;
-	state2=!state2;
-	state3=!state3;
-}
-
-void CinterfaceDlg::On32777()
-{
-	// TODO: 在此添加命令处理程序代码
-	state1=!state1;
-	state2=!state2;
-	state3=!state3;
-}
-
-void CinterfaceDlg::OnUpdate32777(CCmdUI *pCmdUI)
-{
-	// TODO: 在此添加命令更新用户界面处理程序代码
-	pCmdUI->SetCheck(state2);
-}
-
-void CinterfaceDlg::On32778()
-{
-	// TODO: 在此添加命令处理程序代码
-	state1=!state1;
-	state2=!state2;
-	state3=!state3;
-}
-
-void CinterfaceDlg::OnUpdate32778(CCmdUI *pCmdUI)
-{
-	// TODO: 在此添加命令更新用户界面处理程序代码
-	pCmdUI->SetCheck(state3);
-}*/
-
 void CinterfaceDlg::OnUpdatePosix(CCmdUI *pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
-	pCmdUI->SetCheck(state_posix);
+	//m_dlg1.state_posix=!m_dlg1.state_posix;
+	pCmdUI->SetCheck(m_dlg1.state_posix);
 }
 
 void CinterfaceDlg::OnUpdateEcmas(CCmdUI *pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
-	pCmdUI->SetCheck(state_ecmas);
+	pCmdUI->SetCheck(m_dlg1.state_ecmas);
 }
 
-void CinterfaceDlg::OnUpdateJavas(CCmdUI *pCmdUI)
+void CinterfaceDlg::OnUpdateJS(CCmdUI *pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
-	pCmdUI->SetCheck(state_javas);
+	pCmdUI->SetCheck(m_dlg1.state_js);
 }
 
 void CinterfaceDlg::OnUpdateGrep(CCmdUI *pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
-	pCmdUI->SetCheck(state_grep);
+	pCmdUI->SetCheck(m_dlg1.state_grep);
 }
 
 void CinterfaceDlg::OnUpdateEgrep(CCmdUI *pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
-	pCmdUI->SetCheck(state_egrep);
+	pCmdUI->SetCheck(m_dlg1.state_egrep);
 }
 
 
 void CinterfaceDlg::OnUpdateAwk(CCmdUI *pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
-	pCmdUI->SetCheck(state_awk);
+	pCmdUI->SetCheck(m_dlg1.state_awk);
 }
 
 void CinterfaceDlg::OnUpdateSed(CCmdUI *pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
-	pCmdUI->SetCheck(state_sed);
+	pCmdUI->SetCheck(m_dlg1.state_sed);
 }
 
 void CinterfaceDlg::OnUpdatePerl(CCmdUI *pCmdUI)
 {
 	// TODO: 在此添加命令更新用户界面处理程序代码
-	pCmdUI->SetCheck(state_perl);
+	pCmdUI->SetCheck(m_dlg1.state_perl);
+}
+void CinterfaceDlg::OnPosix()
+{
+	// TODO: 在此添加命令处理程序代码
+	if(m_dlg1.state_posix==false){
+	m_dlg1.state_posix=!m_dlg1.state_posix;
+	m_dlg1.state_ecmas=m_dlg1.state_js=m_dlg1.state_grep=m_dlg1.state_egrep=m_dlg1.state_awk=m_dlg1.state_sed=m_dlg1.state_perl=false;
+	m_dlg1.OnPosix();
+	m_dlg2.state_posix=!m_dlg2.state_posix;
+	m_dlg2.state_ecmas=m_dlg2.state_js=m_dlg2.state_grep=m_dlg2.state_egrep=m_dlg2.state_awk=m_dlg2.state_sed=m_dlg2.state_perl=false;
+	m_dlg2.OnPosix();}
 }
 
+void CinterfaceDlg::OnEcmas()
+{
+	// TODO: 在此添加命令处理程序代码
+	if(m_dlg1.state_ecmas==false){
+	m_dlg1.state_ecmas=!m_dlg1.state_ecmas;
+	m_dlg1.state_posix=m_dlg1.state_js=m_dlg1.state_grep=m_dlg1.state_egrep=m_dlg1.state_awk=m_dlg1.state_sed=m_dlg1.state_perl=false;
+	m_dlg1.OnEcmas();
+	m_dlg2.state_ecmas=!m_dlg2.state_ecmas;
+	m_dlg2.state_posix=m_dlg2.state_js=m_dlg2.state_grep=m_dlg2.state_egrep=m_dlg2.state_awk=m_dlg2.state_sed=m_dlg2.state_perl=false;
+	m_dlg2.OnEcmas();}
+}
 
+void CinterfaceDlg::OnJS()
+{
+	// TODO: 在此添加命令处理程序代码
+	if(m_dlg1.state_js==false)
+	{
+	m_dlg1.state_js=!m_dlg1.state_js;
+	m_dlg1.state_ecmas=m_dlg1.state_posix=m_dlg1.state_grep=m_dlg1.state_egrep=m_dlg1.state_awk=m_dlg1.state_sed=m_dlg1.state_perl=false;
+	m_dlg1.OnJS();
+	m_dlg2.state_js=!m_dlg2.state_js;
+	m_dlg2.state_ecmas=m_dlg2.state_posix=m_dlg2.state_grep=m_dlg2.state_egrep=m_dlg2.state_awk=m_dlg2.state_sed=m_dlg2.state_perl=false;
+	m_dlg2.OnJS();
+	}
+}
+
+void CinterfaceDlg::OnGrep()
+{
+	// TODO: 在此添加命令处理程序代码
+	if(m_dlg1.state_grep==false){
+	m_dlg1.state_grep=!m_dlg1.state_grep;
+	m_dlg1.state_ecmas=m_dlg1.state_js=m_dlg1.state_posix=m_dlg1.state_egrep=m_dlg1.state_awk=m_dlg1.state_sed=m_dlg1.state_perl=false;
+	m_dlg1.OnGrep();
+	m_dlg2.state_grep=!m_dlg2.state_grep;
+	m_dlg2.state_ecmas=m_dlg2.state_js=m_dlg2.state_posix=m_dlg2.state_egrep=m_dlg2.state_awk=m_dlg2.state_sed=m_dlg2.state_perl=false;
+	m_dlg2.OnGrep();}
+}
+
+void CinterfaceDlg::OnEgrep()
+{
+	// TODO: 在此添加命令处理程序代码
+	if(m_dlg1.state_egrep==false){
+	m_dlg1.state_egrep=!m_dlg1.state_egrep;
+	m_dlg1.state_ecmas=m_dlg1.state_js=m_dlg1.state_grep=m_dlg1.state_posix=m_dlg1.state_awk=m_dlg1.state_sed=m_dlg1.state_perl=false;
+	m_dlg1.OnEgrep();
+	m_dlg2.state_egrep=!m_dlg2.state_egrep;
+	m_dlg2.state_ecmas=m_dlg2.state_js=m_dlg2.state_grep=m_dlg2.state_posix=m_dlg2.state_awk=m_dlg2.state_sed=m_dlg2.state_perl=false;
+	m_dlg2.OnEgrep();}
+}
+
+void CinterfaceDlg::OnAwk()
+{
+	// TODO: 在此添加命令处理程序代码
+	if(m_dlg1.state_awk==false){
+	m_dlg1.state_awk=!m_dlg1.state_awk;
+	m_dlg1.state_ecmas=m_dlg1.state_js=m_dlg1.state_grep=m_dlg1.state_egrep=m_dlg1.state_posix=m_dlg1.state_sed=m_dlg1.state_perl=false;
+	m_dlg1.OnAwk();
+	m_dlg2.state_awk=!m_dlg2.state_awk;
+	m_dlg2.state_ecmas=m_dlg2.state_js=m_dlg2.state_grep=m_dlg2.state_egrep=m_dlg2.state_posix=m_dlg2.state_sed=m_dlg2.state_perl=false;
+	m_dlg2.OnAwk();}
+}
+
+void CinterfaceDlg::OnSed()
+{
+	// TODO: 在此添加命令处理程序代码
+	if(m_dlg1.state_sed==false){
+	m_dlg1.state_sed=!m_dlg1.state_sed;
+	m_dlg1.state_ecmas=m_dlg1.state_js=m_dlg1.state_grep=m_dlg1.state_egrep=m_dlg1.state_awk=m_dlg1.state_posix=m_dlg1.state_perl=false;
+	m_dlg1.OnSed();
+	m_dlg2.state_sed=!m_dlg2.state_sed;
+	m_dlg2.state_ecmas=m_dlg2.state_js=m_dlg2.state_grep=m_dlg2.state_egrep=m_dlg2.state_awk=m_dlg2.state_posix=m_dlg2.state_perl=false;
+	m_dlg2.OnSed();}
+}
+
+void CinterfaceDlg::OnPerl()
+{
+	// TODO: 在此添加命令处理程序代码
+	if(m_dlg1.state_perl==false){
+	m_dlg1.state_perl=!m_dlg1.state_perl;
+	m_dlg1.state_ecmas=m_dlg1.state_js=m_dlg1.state_grep=m_dlg1.state_egrep=m_dlg1.state_awk=m_dlg1.state_sed=m_dlg1.state_posix=false;
+	m_dlg1.OnPerl();
+	m_dlg2.state_perl=!m_dlg2.state_perl;
+	m_dlg2.state_ecmas=m_dlg2.state_js=m_dlg2.state_grep=m_dlg2.state_egrep=m_dlg2.state_awk=m_dlg2.state_sed=m_dlg2.state_posix=false;
+	m_dlg2.OnPerl();}
+}

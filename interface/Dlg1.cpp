@@ -1,14 +1,16 @@
 
-
+#pragma once
 #include "stdafx.h"
 #include "interface.h"
 #include "Dlg1.h"
+#include "ShowErrMessage.h"
 #include <string>
 #include <boost/regex.hpp>
 
 using namespace std;
 using namespace boost;
-
+using namespace boost::regex_constants;
+//extern void ShowErrMessage(const boost::regex_error &err);
 // CDlg1 对话框
 
 IMPLEMENT_DYNAMIC(CDlg1, CDialog)
@@ -18,6 +20,8 @@ CDlg1::CDlg1(CWnd* pParent /*=NULL*/)
 	//, m_edit1(_T(""))
 	, m_strExpression(_T(""))
 	, m_strTestString(_T(""))
+	, m_matchFlag(boost::regex_constants::match_default)
+	, m_syntaxType(boost::regex_constants::normal)
 {
 
 }
@@ -40,14 +44,6 @@ BEGIN_MESSAGE_MAP(CDlg1, CDialog)
 	ON_BN_CLICKED(IDC_SEARCH, &CDlg1::OnBnClickedSearch)
 	//ON_BN_CLICKED(IDC_LOAD, &CDlg1::OnBnClickedLoad)
 	ON_BN_CLICKED(IDC_LOAD, &CDlg1::OnBnClickedLoad)
-	ON_COMMAND(ID_POSIX, &CDlg1::OnPosix)
-	ON_COMMAND(ID_ECMAS, &CDlg1::OnEcmas)
-	ON_COMMAND(ID_JAVAS, &CDlg1::OnJavas)
-	ON_COMMAND(ID_GREP, &CDlg1::OnGrep)
-	ON_COMMAND(ID_EGREP, &CDlg1::OnEgrep)
-	ON_COMMAND(ID_AWK, &CDlg1::OnAwk)
-	ON_COMMAND(ID_SED, &CDlg1::OnSed)
-	ON_COMMAND(ID_PERL, &CDlg1::OnPerl)
 END_MESSAGE_MAP()
 
 
@@ -59,25 +55,34 @@ void CDlg1::OnBnClickedMatch()
 	wcmatch what;
 	wstring testString(m_strTestString.GetBuffer());
 	wstring expString(m_strExpression.GetBuffer());
-	wregex expression(expString);
-	wstring result;
-	if(regex_match(testString.c_str(), what, expression))
+	try{
+		wregex expression(expString, m_syntaxType);
+		wstring result;
+		if(regex_match(testString.c_str(), what, expression, m_matchFlag))
+		{
+			//AfxMessageBox("Match!");
+			result = L"Match!\n";
+			result += L"The strings matched are:";
+			for(int i=0;i<what.size();i++)
+				result += what[i].str();
+		}
+		else
+		{
+			//AfxMessageBox("No match!");
+			result = L"No match!\n";
+		}
+		//m_strResult.Format("%s",result.c_str());
+		CString m_strResult(result.c_str());
+		MessageBox(m_strResult);
+		UpdateData(FALSE);
+	}catch(const boost::regex_error &err)
 	{
-		//AfxMessageBox("Match!");
-		result = L"Match!\n";
-		result += L"The strings matched are:";
-		for(int i=0;i<what.size();i++)
-			result += what[i].str();
+		ShowErrMessage(err);
 	}
-	else
+	catch(...)
 	{
-		//AfxMessageBox("No match!");
-		result = L"No match!\n";
+		MessageBox(L"未知错误！");
 	}
-	//m_strResult.Format("%s",result.c_str());
-	CString m_strResult(result.c_str());
-	MessageBox(m_strResult);
-	UpdateData(FALSE);
 }
 
 void CDlg1::OnBnClickedSearch()
@@ -86,47 +91,55 @@ void CDlg1::OnBnClickedSearch()
 	wsmatch what;
 	wstring testString(m_strTestString.GetBuffer());
 	wstring expString(m_strExpression.GetBuffer());
-	wregex expression(expString);
-	wstring result;
-	wstring::const_iterator start = testString.begin();
-	wstring::const_iterator end = testString.end();
-	bool flag=0;
-	//if(regex_search(testString, expression))
-	while(regex_search(start, end, what, expression))
-	{
-		if(!flag)
+	try{
+		wregex expression(expString, m_syntaxType);
+		wstring result;
+		wstring::const_iterator start = testString.begin();
+		wstring::const_iterator end = testString.end();
+		bool flag=0;
+		while(regex_search(start, end, what, expression, m_matchFlag))
 		{
-			result += L"The strings matched are:\n";
-			flag = 1;
-		}
-		//AfxMessageBox(L"Match!");
-		/*wstring msg(what[1].first, what[1].second);
-		CString test(msg.c_str());
-		MessageBox(test);
-		result += what[1].str();*/
-		for(int i=0;i<what.size();i++)
-			result += what[i].str();
-		/*for(int i=what[1].first;i<what[1].second;i++)
-			result += what[i].str();*/
-		result += L"\n";
-		start = what[0].second;
+			if(!flag)
+			{
+				result += L"The strings matched are:\n";
+				flag = 1;
+			}
+			//AfxMessageBox(L"Match!");
+			/*wstring msg(what[1].first, what[1].second);
+			CString test(msg.c_str());
+			MessageBox(test);
+			result += what[1].str();*/
+			for(int i=0;i<what.size();i++)
+				result += what[i].str();
+			/*for(int i=what[1].first;i<what[1].second;i++)
+				result += what[i].str();*/
+			result += L"\n";
+			start = what[0].second;
 
-		//result += L"The strings matched are:";
-		//for(int i=0;i<what.size();i++)
-			//result += what[i].str();
-	}
-	if(result.size() == 0)
+			//result += L"The strings matched are:";
+			//for(int i=0;i<what.size();i++)
+				//result += what[i].str();
+		}
+		if(result.size() == 0)
+		{
+			result = L"No match!\n";
+		}
+		//else
+		//{
+		//	//AfxMessageBox("No match!");
+		//	result = L"No match!\n";
+		//}
+		CString m_strResult(result.c_str());
+		MessageBox(m_strResult);
+		UpdateData(FALSE);
+	}catch(const boost::regex_error &err)
 	{
-		result = L"No match!\n";
+		ShowErrMessage(err);
 	}
-	//else
-	//{
-	//	//AfxMessageBox("No match!");
-	//	result = L"No match!\n";
-	//}
-	CString m_strResult(result.c_str());
-	MessageBox(m_strResult);
-	UpdateData(FALSE);
+	catch(...)
+	{
+		MessageBox(L"未知错误！");
+	}
 }
 
 void CDlg1::OnBnClickedLoad()
@@ -181,40 +194,64 @@ void CDlg1::OnBnClickedLoad()
 
 void CDlg1::OnPosix()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_posix==true)
+	{
+		//m_syntaxType=
+	}
 }
 
 void CDlg1::OnEcmas()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_ecmas==true)
+	{
+		//m_syntaxType=;
+	}MessageBox(L"T2");
 }
 
-void CDlg1::OnJavas()
+void CDlg1::OnJS()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_js==true)
+	{
+		m_syntaxType=JavaScript;
+	}
 }
 
 void CDlg1::OnGrep()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_grep==true)
+	{
+		m_syntaxType=grep;
+	}
 }
 
 void CDlg1::OnEgrep()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_egrep==true)
+	{
+		m_syntaxType=egrep;
+	}
 }
 
 void CDlg1::OnAwk()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_awk==true)
+	{
+		m_syntaxType=awk;
+	}
 }
 
 void CDlg1::OnSed()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_sed==true)
+	{
+		m_syntaxType=sed;
+	}
 }
 
 void CDlg1::OnPerl()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_perl==true)
+	{
+		m_syntaxType=perl;
+	}
 }
