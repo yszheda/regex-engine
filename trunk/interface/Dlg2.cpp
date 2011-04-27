@@ -1,14 +1,15 @@
 
-
+#pragma once
 #include "stdafx.h"
 #include "interface.h"
 #include "Dlg2.h"
+#include "ShowErrMessage.h"
 #include <string>
 #include <boost/regex.hpp>
 
 using namespace std;
 using namespace boost;
-
+//extern void ShowErrMessage(const boost::regex_error &err);
 // CDlg2 对话框
 
 IMPLEMENT_DYNAMIC(CDlg2, CDialog)
@@ -19,6 +20,8 @@ CDlg2::CDlg2(CWnd* pParent /*=NULL*/)
 	, m_strExpression(_T(""))
 	, m_strTestString(_T(""))
 	, m_strReplaceString(_T(""))
+	, m_matchFlag(boost::regex_constants::match_default)
+	, m_syntaxType(boost::regex_constants::normal)
 {
 
 }
@@ -39,14 +42,6 @@ void CDlg2::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CDlg2, CDialog)
 	ON_BN_CLICKED(IDC_REPLACE, &CDlg2::OnBnClickedReplace)
-	ON_COMMAND(ID_POSIX, &CDlg2::OnPosix)
-	ON_COMMAND(ID_ECMAS, &CDlg2::OnEcmas)
-	ON_COMMAND(ID_JAVAS, &CDlg2::OnJavas)
-	ON_COMMAND(ID_GREP, &CDlg2::OnGrep)
-	ON_COMMAND(ID_EGREP, &CDlg2::OnEgrep)
-	ON_COMMAND(ID_AWK, &CDlg2::OnAwk)
-	ON_COMMAND(ID_SED, &CDlg2::OnSed)
-	ON_COMMAND(ID_PERL, &CDlg2::OnPerl)
 END_MESSAGE_MAP()
 
 
@@ -58,50 +53,83 @@ void CDlg2::OnBnClickedReplace()
 	wstring testString(m_strTestString.GetBuffer());
 	wstring expString(m_strExpression.GetBuffer());
 	wstring repString(m_strReplaceString.GetBuffer());
-	wregex expression(expString);
-	wstring result = regex_replace(testString, expression, repString);
-	//m_strResult.Format("%s",result.c_str());
-	CString m_strResult(result.c_str());
-	MessageBox(m_strResult);
-	UpdateData(FALSE);
+	try{
+		wregex expression(expString, m_syntaxType);
+		wstring result = regex_replace(testString, expression, repString, m_matchFlag);
+		//m_strResult.Format("%s",result.c_str());
+		CString m_strResult(result.c_str());
+		MessageBox(m_strResult);
+		UpdateData(FALSE);
+	}catch(const boost::regex_error &err)
+	{
+		ShowErrMessage(err);
+	}
+	catch(...)
+	{
+		MessageBox(L"未知错误！");
+	}
 }
 
 void CDlg2::OnPosix()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_posix==true)
+	{
+		//m_syntaxType=
+	}
 }
 
 void CDlg2::OnEcmas()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_ecmas==true)
+	{
+		//m_syntaxType=;
+	}MessageBox(L"T2");
 }
 
-void CDlg2::OnJavas()
+void CDlg2::OnJS()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_js==true)
+	{
+		m_syntaxType=JavaScript;
+	}
 }
 
 void CDlg2::OnGrep()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_grep==true)
+	{
+		m_syntaxType=grep;
+	}
 }
 
 void CDlg2::OnEgrep()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_egrep==true)
+	{
+		m_syntaxType=egrep;
+	}
 }
 
 void CDlg2::OnAwk()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_awk==true)
+	{
+		m_syntaxType=awk;
+	}
 }
 
 void CDlg2::OnSed()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_sed==true)
+	{
+		m_syntaxType=sed;
+	}
 }
 
 void CDlg2::OnPerl()
 {
-	// TODO: 在此添加命令处理程序代码
+	if(state_perl==true)
+	{
+		m_syntaxType=perl;
+	}
 }

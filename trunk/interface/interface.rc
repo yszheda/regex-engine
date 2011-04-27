@@ -99,9 +99,9 @@ BEGIN
     PUSHBUTTON      "退出",IDCANCEL,263,179,50,14
     CONTROL         "",IDC_TAB1,"SysTabControl32",0x0,101,14,205,165
     LISTBOX         IDC_LIST1,8,26,84,152,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "大小写敏感",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,92,2,50,10
-    CONTROL         "单行模式",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,143,2,43,10
-    CONTROL         "多行模式",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,185,2,43,10
+    CONTROL         "大小写敏感",IDC_ICASE,"Button",BS_AUTORADIOBUTTON,92,2,50,10,WS_EX_TRANSPARENT
+    CONTROL         "单行模式",IDC_SingleLine,"Button",BS_AUTORADIOBUTTON,143,2,43,10
+    CONTROL         "多行模式",IDC_MULTILINE,"Button",BS_AUTORADIOBUTTON,185,2,43,10
 END
 
 IDD_DIALOG1 DIALOGEX 0, 0, 194, 146
@@ -231,11 +231,11 @@ BEGIN
     BEGIN
         MENUITEM "关于",                          ID_32773
     END
-    POPUP "方法"
+    POPUP "选项"
     BEGIN
         MENUITEM "POSIX",                       ID_POSIX
         MENUITEM "ECMAScript",                  ID_ECMAS
-        MENUITEM "JavaScript",                  ID_JAVAS
+        MENUITEM "JavaScript",                  ID_JS
         MENUITEM "grep",                        ID_GREP
         MENUITEM "egrep",                       ID_EGREP
         MENUITEM "awk",                         ID_AWK
