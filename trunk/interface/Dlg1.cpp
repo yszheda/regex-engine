@@ -60,18 +60,15 @@ void CDlg1::OnBnClickedMatch()
 		wstring result;
 		if(regex_match(testString.c_str(), what, expression, m_matchFlag))
 		{
-			//AfxMessageBox("Match!");
-			result = L"Match!\n";
-			result += L"The strings matched are:";
+			result = L"内容与正则表达式匹配！\n";
+			result += L"匹配的字符串为：";
 			for(int i=0;i<what.size();i++)
 				result += what[i].str();
 		}
 		else
 		{
-			//AfxMessageBox("No match!");
-			result = L"No match!\n";
+			result = L"内容与正则表达式不匹配！\n";
 		}
-		//m_strResult.Format("%s",result.c_str());
 		CString m_strResult(result.c_str());
 		MessageBox(m_strResult);
 		UpdateData(FALSE);
@@ -101,7 +98,7 @@ void CDlg1::OnBnClickedSearch()
 		{
 			if(!flag)
 			{
-				result += L"The strings matched are:\n";
+				result += L"根据正则表达式查到到的匹配字符串为：\n";
 				flag = 1;
 			}
 			//AfxMessageBox(L"Match!");
@@ -138,7 +135,7 @@ void CDlg1::OnBnClickedSearch()
 	}
 	catch(...)
 	{
-		MessageBox(L"未知错误！");
+		MessageBox(L"内容与正则表达式不匹配！");
 	}
 }
 
