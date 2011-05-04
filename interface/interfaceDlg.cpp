@@ -9,7 +9,6 @@
 #define new DEBUG_NEW
 #endif
 
-
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
 
 class CAboutDlg : public CDialog
@@ -106,8 +105,27 @@ BEGIN_MESSAGE_MAP(CinterfaceDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CinterfaceDlg 消息处理程序
 
+void CinterfaceDlg::InitializeState()
+{
+	state_posix=false;
+	state_ecmas=false;
+	state_js=false;
+	state_grep=false;
+	state_egrep=false;
+	state_awk=false;
+	state_sed=false;
+	state_perl=true;
+	state_basic=true;
+	state_extended=false;
+
+	state_icase=false;
+
+	state_singleline=false;
+	state_multiline=true;
+	state_not_null=false;
+}
+// CinterfaceDlg 消息处理程序
 BOOL CinterfaceDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
@@ -166,32 +184,7 @@ BOOL CinterfaceDlg::OnInitDialog()
 	m_dlg1.ShowWindow(true);
 	m_dlg2.ShowWindow(false);
 
-	
-	state_posix=false;
-	state_ecmas=false;
-	state_js=false;
-	state_grep=false;
-	state_egrep=false;
-	state_awk=false;
-	state_sed=false;
-	state_perl=true;
-	state_basic=true;
-	state_extended=false;
-
-	state_icase=false;
-
-	state_singleline=false;
-	state_multiline=true;
-	state_not_null=false;
-
-	//m_dlg2.state_posix=false;
-	//m_dlg2.state_ecmas=false;
-	//m_dlg2.state_js=false;
-	//m_dlg2.state_grep=false;
-	//m_dlg2.state_egrep=false;
-	//m_dlg2.state_awk=false;
-	//m_dlg2.state_sed=false;
-	//m_dlg2.state_perl=true;
+	InitializeState();
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -615,8 +608,8 @@ void CinterfaceDlg::OnNotNull()
 	if(state_not_null==false)
 	{
 		state_not_null=!state_not_null;
-		m_dlg1.ResetSingleLine(state_not_null);
-		m_dlg2.ResetSingleLine(state_not_null);
+		m_dlg1.SetNotNull(state_not_null);
+		m_dlg2.SetNotNull(state_not_null);
 	}
 }
 

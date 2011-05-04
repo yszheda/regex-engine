@@ -66,6 +66,7 @@ public:
 	afx_msg void OnSed();
 	afx_msg void OnPerl();
 private:
+	void InitializeState();
 	bool state_posix;
 	bool state_ecmas;
 	bool state_js;
