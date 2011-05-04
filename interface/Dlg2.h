@@ -29,23 +29,23 @@ public:
 
 	friend class CinterfaceDlg;
 	
-	bool state_posix;
-	bool state_ecmas;
-	bool state_js;
-	bool state_grep;
-	bool state_egrep;
-	bool state_awk;
-	bool state_sed;
-	bool state_perl;
 		
-	void OnPosix();
-	void OnEcmas();
-	void OnJS();
-	void OnGrep();
-	void OnEgrep();
-	void OnAwk();
-	void OnSed();
-	void OnPerl();
+	void SetPosix();
+	void SetEcmas();
+	void SetJS();
+	void SetGrep();
+	void SetEgrep();
+	void SetAwk();
+	void SetSed();
+	void SetPerl();
+	void SetBasic();
+	void SetExtended();
+
+	void SetICase(bool state_icase);
+	
+	void SetSingleLine();
+	void ResetSingleLine();
+	void SetNotNull(bool state_not_null);
 };
 
 
