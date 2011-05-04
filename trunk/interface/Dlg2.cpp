@@ -146,7 +146,7 @@ void CDlg2::SetExtended()
 
 void CDlg2::SetNotNull(bool state_not_null)
 {
-	if(flag)
+	if(state_not_null)
 	{
 		m_matchFlag |= match_not_null;
 	}

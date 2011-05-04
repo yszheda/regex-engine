@@ -229,7 +229,7 @@ void CDlg1::SetPerl()
 	m_syntaxType=perl;
 }
 
-void CDlg1::SetICase()
+void CDlg1::SetICase(bool state_icase)
 {
 	if(state_icase)
 	{
@@ -263,7 +263,7 @@ void CDlg1::SetExtended()
 }
 void CDlg1::SetNotNull(bool state_not_null)
 {
-	if(flag)
+	if(state_not_null)
 	{
 		m_matchFlag |= match_not_null;
 	}
