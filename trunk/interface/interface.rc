@@ -227,20 +227,23 @@ BEGIN
         MENUITEM "查找",                          ID_32771
         MENUITEM "匹配",                          ID_32772
     END
+    POPUP "选项"
+    BEGIN
+        POPUP "正则表达式语法"
+        BEGIN
+            MENUITEM "perl",                        ID_PERL
+            MENUITEM "grep",                        ID_GREP
+            MENUITEM "egrep",                       ID_EGREP
+            MENUITEM "awk",                         ID_AWK
+            MENUITEM "sed",                         ID_SED
+            MENUITEM "JavaScript",                  ID_JS
+            MENUITEM "POSIX",                       ID_POSIX
+            MENUITEM "ECMAScript",                  ID_ECMAS
+        END
+    END
     POPUP "帮助"
     BEGIN
         MENUITEM "关于",                          ID_32773
-    END
-    POPUP "选项"
-    BEGIN
-        MENUITEM "POSIX",                       ID_POSIX
-        MENUITEM "ECMAScript",                  ID_ECMAS
-        MENUITEM "JavaScript",                  ID_JS
-        MENUITEM "grep",                        ID_GREP
-        MENUITEM "egrep",                       ID_EGREP
-        MENUITEM "awk",                         ID_AWK
-        MENUITEM "sed",                         ID_SED
-        MENUITEM "perl",                        ID_PERL
     END
 END
 
