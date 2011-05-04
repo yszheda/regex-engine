@@ -56,13 +56,26 @@
 #define ID_JS                           32795
 #define ID_32796                        32796
 #define ID_Menu                         32797
+#define ID_32798                        32798
+#define ID_32799                        32799
+#define ID_32800                        32800
+#define ID_32801                        32801
+#define ID_SINGLELINE                   32802
+#define ID_MULTILINE                    32803
+#define ID_ICASE                        32804
+#define ID_32805                        32805
+#define ID_32806                        32806
+#define ID_BASIC                        32807
+#define ID_EXTENDED                     32808
+#define ID_32809                        32809
+#define ID_NOT_NULL                     32810
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        131
-#define _APS_NEXT_COMMAND_VALUE         32798
+#define _APS_NEXT_COMMAND_VALUE         32811
 #define _APS_NEXT_CONTROL_VALUE         1016
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

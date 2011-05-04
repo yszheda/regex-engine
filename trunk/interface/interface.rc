@@ -239,6 +239,15 @@ BEGIN
             MENUITEM "JavaScript",                  ID_JS
             MENUITEM "POSIX",                       ID_POSIX
             MENUITEM "ECMAScript",                  ID_ECMAS
+            MENUITEM "基本语法功能",                      ID_BASIC
+            MENUITEM "扩展语法功能",                      ID_EXTENDED
+        END
+        MENUITEM "大小写敏感",                       ID_ICASE
+        POPUP "匹配格式"
+        BEGIN
+            MENUITEM "单行模式",                        ID_SINGLELINE
+            MENUITEM "多行模式",                        ID_MULTILINE
+            MENUITEM "不匹配空序列",                      ID_NOT_NULL
         END
     END
     POPUP "帮助"

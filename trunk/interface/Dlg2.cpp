@@ -70,66 +70,88 @@ void CDlg2::OnBnClickedReplace()
 	}
 }
 
-void CDlg2::OnPosix()
+void CDlg2::SetPosix()
 {
-	if(state_posix==true)
+	MessageBox(L"T1");
+}
+
+void CDlg2::SetEcmas()
+{
+	MessageBox(L"T2");
+}
+
+void CDlg2::SetJS()
+{
+	m_syntaxType=JavaScript;
+}
+
+void CDlg2::SetGrep()
+{
+	m_syntaxType=grep;
+}
+
+void CDlg2::SetEgrep()
+{
+	m_syntaxType=egrep;
+}
+
+void CDlg2::SetAwk()
+{
+	m_syntaxType=awk;
+}
+
+void CDlg2::SetSed()
+{
+	m_syntaxType=sed;
+}
+
+void CDlg2::SetPerl()
+{
+	m_syntaxType=perl;
+}
+
+void CDlg2::SetICase(bool state_icase)
+{
+	if(state_icase)
 	{
-		//m_syntaxType=
+		m_syntaxType |= icase;
+	}
+	else
+	{
+		m_syntaxType &= ~icase;
 	}
 }
 
-void CDlg2::OnEcmas()
+void CDlg2::SetSingleLine()
 {
-	if(state_ecmas==true)
-	{
-		//m_syntaxType=;
-	}MessageBox(L"T2");
+	m_matchFlag |= match_single_line; 
 }
 
-void CDlg2::OnJS()
+void CDlg2::ResetSingleLine()
 {
-	if(state_js==true)
+	m_matchFlag &= ~match_single_line; 
+}
+
+void CDlg2::SetBasic()
+{
+	m_syntaxType |= basic;
+	m_syntaxType &= ~extended;
+}
+
+void CDlg2::SetExtended()
+{
+	m_syntaxType |= extended;
+	m_syntaxType &= ~basic;
+}
+
+void CDlg2::SetNotNull(bool state_not_null)
+{
+	if(flag)
 	{
-		m_syntaxType=JavaScript;
+		m_matchFlag |= match_not_null;
 	}
-}
-
-void CDlg2::OnGrep()
-{
-	if(state_grep==true)
+	else
 	{
-		m_syntaxType=grep;
-	}
-}
-
-void CDlg2::OnEgrep()
-{
-	if(state_egrep==true)
-	{
-		m_syntaxType=egrep;
-	}
-}
-
-void CDlg2::OnAwk()
-{
-	if(state_awk==true)
-	{
-		m_syntaxType=awk;
-	}
-}
-
-void CDlg2::OnSed()
-{
-	if(state_sed==true)
-	{
-		m_syntaxType=sed;
-	}
-}
-
-void CDlg2::OnPerl()
-{
-	if(state_perl==true)
-	{
-		m_syntaxType=perl;
+		m_matchFlag &= ~match_not_null;
 	}
 }
